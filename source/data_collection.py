@@ -29,7 +29,7 @@ try:
 
     def storeBlinkSequence(blink_sequence, recorded_bits):
         print("Storing the recorded blink sequence")
-        with open("../data/" + blink_sequence + ".csv", 'a') as fd:
+        with open("../data/" + blink_sequence + ".txt", 'a') as fd:
             fd.write("\n" + recorded_bits)
 
     if __name__=="__main__":
