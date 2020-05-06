@@ -51,7 +51,7 @@ try:
         print(percent_transmission_error)
         average_transmission_error = mean(percent_transmission_error)
         print("Probability of error in transmission: " + str(average_transmission_error))
-        return average_transmission_error
+        return percent_transmission_error
 
     
     if __name__ == "__main__":
