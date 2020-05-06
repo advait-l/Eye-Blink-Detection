@@ -10,7 +10,7 @@
   - Thus, this encoding scheme can correct upto 4 bits. 
   - Similarly, if we increase the minimum hamming distance of the input data to **2** by considering only 4 out of the 16 4 bit schemes, the *minimum effective hamming distance* is now **20**, and this can correct upto **9** bits.
 
-## Probability of error of transmission
+### Probability of error of transmission
 
 - The probability of error of transmission is estimated by taking trials against the ground truth blink sequence `10101010101010101010`. 
 - Each bit of the ground truth sequence has a corresponding 10 bit of sensor data. So the ground truth blink sequence corresponds to a 100-bit binary sequence `111111111100000000001111111111...`
