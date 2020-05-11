@@ -6,7 +6,7 @@
   - We also are using all 16 combinations of the 4 bit input data sequence (40 bit encoded sequence). Thus, the input data has a *minimum hamming distance* of **1**
   - If we combine this fact along with our encoding scheme, the *effective minimum hamming distance* is **10**
         
-    ![formula](https://render.githubusercontent.com/render/math?math=\lfloor%20\frac{10}{2}%20\rfloor=4)
+    ![formula](https://render.githubusercontent.com/render/math?math=\lfloor%20\frac{10-1}{2}%20\rfloor=4)
   - Thus, this encoding scheme can correct upto 4 bits. 
   - Similarly, if we increase the minimum hamming distance of the input data to **2** by considering only 4 out of the 16 4 bit schemes, the *minimum effective hamming distance* is now **20**, and this can correct upto **9** bits.
 
