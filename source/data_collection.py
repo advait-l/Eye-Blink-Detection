@@ -7,7 +7,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor, GPIO.IN)
 
 try:
-    BLINK_SEQUENCES = [ "1001", "0110", "1010", "0101", "1100", "0011"]
+    BLINK_SEQUENCES = ["1010", "0101", "1100", "0011"]
+
 
     def recordBlinkSequence():
         print("You have 4 seconds to record the blink")
@@ -27,18 +28,40 @@ try:
             print(i%3 + 1)
             time.sleep(1)
 
-    def storeBlinkSequence(blink_sequence, recorded_bits):
-        print("Storing the recorded blink sequence")
-        with open("../data/" + blink_sequence + ".txt", 'a') as fd:
-            fd.write("\n" + recorded_bits)
+    def majorityLogic(sequence):
+        detected_sequence = ""
+        index = 0
+        for i in range(4):
+            ones = sequence.count("1", index, index + 10)
+            zeros = sequence.count("0", index, index + 10)
+            if(zeros >= ones):
+                detected_sequence += "0"
+            else:
+                detected_sequence += "1"
+            index += 10
+        print("Detecting sequence...")
+        print(detected_sequence)
+        return detected_sequence
+
+
+    def storeBlinkSequence(blink_sequence, recorded_bits, detected_sequence):
+        print("Storing the recorded blink sequence...")
+        status = "Failure"
+        if(blink_sequence == detected_sequence):
+            status = "Success"
+
+        with open("../data/detected_sequences.csv", 'a') as fd:
+            fd.write("\n" + blink_sequence + "," + recorded_bits + "," + detected_sequence + "," + status + ";")
 
     if __name__=="__main__":
 
         for blink_sequence in BLINK_SEQUENCES:
+            print("****************************************")
             print("Recording: " + blink_sequence)
             countDown()
             recorded_bits = recordBlinkSequence()
-            storeBlinkSequence(blink_sequence, recorded_bits)
+            detected_sequence = majorityLogic(recorded_bits)
+            storeBlinkSequence(blink_sequence, recorded_bits, detected_sequence)
 
 
 except KeyboardInterrupt:
